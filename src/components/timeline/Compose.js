@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 
-function Compose(props) {
+function Compose({ addPost }) {
   const [content, setContent] = useState("");
 
-  function changeContent(event) {
+  function handleChangeContent(event) {
     var textbox = event.target;
     setContent(textbox.value);
   }
 
-  function submit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-    props.addPost(content);
+    addPost(content);
   }
 
   return (
-    <form onSubmit={submit}>
-      <textarea value={content} onChange={changeContent} />
+    <form onSubmit={handleSubmit}>
+      <textarea value={content} onChange={handleChangeContent} />
       <button type="submit">OK</button>
     </form>
   );
