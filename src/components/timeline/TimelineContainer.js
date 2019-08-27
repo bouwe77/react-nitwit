@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
 import settings from "../../settings";
@@ -7,6 +7,7 @@ import Compose from "./Compose";
 
 function TimelineContainer() {
   const [posts, setPosts] = useState([]);
+  const [etag, setEtag] = useState(null);
 
   function addPost(content) {
     // Remember the posts before the new one is added.
@@ -21,28 +22,41 @@ function TimelineContainer() {
     axios.post(settings.postsUrl, newPost).catch(error => {
       // Posting to the API failed so "rollback" the state to the previous posts.
       setPosts(prevPosts);
-      handle(error);
+      console.log(error, error.request, error.response, error.config);
     });
   }
 
-  // Get the timeline from the REST API when the component is rendered for the first time.
-  useEffect(() => {
-    function getTimeline() {
-      axios
-        .get(settings.timelineUrl)
-        .then(res => {
-          setPosts(res.data);
-        })
-        .catch(error => {
-          handle(error);
-        });
-    }
-    getTimeline();
-  }, []);
+  const getTimeline = useCallback(() => {
+    axios
+      .get(settings.timelineUrl, {
+        headers: { "If-None-Match": etag },
+        validateStatus: function(status) {
+          return status < 400; // All status codes below 400 are valid
+        }
+      })
+      .then(res => {
+        if (etag !== res.headers.etag) {
+          setEtag(res.headers.etag);
+        }
+        if (res.status === 200) setPosts(res.data);
+      })
+      .catch(error => {
+        console.log(error, error.request, error.response, error.config);
+      });
+  }, [etag]);
 
-  function handle(error) {
-    console.log(error, error.request, error.response, error.config);
-  }
+  // Get the timeline from the REST API when the component is rendered for the first time and after each page refresh.
+  useEffect(() => {
+    getTimeline();
+  }, [getTimeline]);
+
+  // Get the timeline from the REST API every x seconds to make the app realtime(ish).
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getTimeline();
+    }, 30000);
+    return () => clearInterval(interval);
+  }, [getTimeline]);
 
   return (
     <>

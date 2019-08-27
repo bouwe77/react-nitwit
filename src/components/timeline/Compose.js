@@ -15,7 +15,7 @@ function Compose({ addPost }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <textarea value={content} onChange={handleChangeContent} />
+      <textarea onChange={handleChangeContent} />
       <button type="submit">OK</button>
     </form>
   );

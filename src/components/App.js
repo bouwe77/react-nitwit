@@ -5,10 +5,10 @@ import TimelineContainer from "./timeline/TimelineContainer";
 import FollowingContainer from "./following/FollowingContainer";
 
 function App() {
+  //  <FollowingContainer />
   return (
     <>
       <Header />
-      <FollowingContainer />
       <TimelineContainer />
     </>
   );
