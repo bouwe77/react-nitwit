@@ -26,6 +26,8 @@ function TimelineContainer() {
     });
   }
 
+  // The 'getTimeline' function makes the dependencies of useEffect Hook change on every render.
+  // To fix this, wrap the 'getTimeline' definition into its own useCallback() Hook.
   const getTimeline = useCallback(() => {
     axios
       .get(settings.timelineUrl, {
