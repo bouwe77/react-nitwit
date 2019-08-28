@@ -65,7 +65,7 @@ function TimelineContainer() {
 
     const interval = setInterval(() => {
       getTimeline("interval");
-    }, 10000);
+    }, 600000);
     return () => clearInterval(interval);
   }, [getTimeline]);
 
