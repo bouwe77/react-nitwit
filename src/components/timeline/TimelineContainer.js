@@ -28,35 +28,44 @@ function TimelineContainer() {
 
   // The 'getTimeline' function makes the dependencies of useEffect Hook change on every render.
   // To fix this, wrap the 'getTimeline' definition into its own useCallback() Hook.
-  const getTimeline = useCallback(() => {
-    axios
-      .get(settings.timelineUrl, {
-        headers: { "If-None-Match": etag },
-        validateStatus: function(status) {
-          return status < 400; // All status codes below 400 are valid
-        }
-      })
-      .then(res => {
-        if (etag !== res.headers.etag) {
-          setEtag(res.headers.etag);
-        }
-        if (res.status === 200) setPosts(res.data);
-      })
-      .catch(error => {
-        console.log(error, error.request, error.response, error.config);
-      });
-  }, [etag]);
+  const getTimeline = useCallback(
+    who => {
+      axios
+        .get(settings.timelineUrl, {
+          headers: { "If-None-Match": etag },
+          validateStatus: function(status) {
+            return status < 400; // All status codes below 400 are valid
+          }
+        })
+        .then(res => {
+          console.log(who, res.status);
+
+          if (etag !== res.headers.etag) {
+            setEtag(res.headers.etag);
+          }
+          if (res.status === 200) setPosts(res.data);
+        })
+        .catch(error => {
+          console.log(error, error.request, error.response, error.config);
+        });
+    },
+    [etag]
+  );
 
   // Get the timeline from the REST API when the component is rendered for the first time and after each page refresh.
   useEffect(() => {
-    getTimeline();
+    console.log("useEffect once");
+
+    getTimeline("mount");
   }, [getTimeline]);
 
   // Get the timeline from the REST API every x seconds to make the app realtime(ish).
   useEffect(() => {
+    console.log("useEffect interval");
+
     const interval = setInterval(() => {
-      getTimeline();
-    }, 30000);
+      getTimeline("interval");
+    }, 10000);
     return () => clearInterval(interval);
   }, [getTimeline]);
 
