@@ -11,11 +11,12 @@ function Compose({ addPost }) {
   function handleSubmit(event) {
     event.preventDefault();
     addPost(content);
+    setContent("");
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <textarea onChange={handleChangeContent} />
+      <textarea onChange={handleChangeContent} value={content} />
       <button type="submit">OK</button>
     </form>
   );
