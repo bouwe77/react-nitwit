@@ -13,11 +13,11 @@ class User extends React.Component {
     var followsYou = isFollowingYou ? "follows you" : "";
 
     return (
-      <div className="listitem">
-        <div className="following-username">
+      <div>
+        <div>
           <b>{user}</b> <i>{followsYou}</i>
         </div>
-        <div className="following-buttons">
+        <div>
           <FollowToggle
             youAreFollowing={youAreFollowing}
             toggleFollowing={this.toggleFollowing}

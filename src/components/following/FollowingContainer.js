@@ -10,7 +10,8 @@ export default class FollowingContainer extends React.Component {
 
     this.state = {
       isLoaded: false,
-      users: []
+      users: [],
+      error: null
     };
   }
 
@@ -20,12 +21,13 @@ export default class FollowingContainer extends React.Component {
 
   getUsers = () => {
     axios
-      .get(settings.usersUrl)
+      .get(settings.followingUrl)
       .then(res => {
         this.setState({ isLoaded: true, users: res.data });
       })
       .catch(error => {
-        this.setState({ isLoaded: true, error });
+        console.log(error, error.request, error.response, error.config);
+        this.setState({ isLoaded: true });
       });
   };
 
@@ -51,17 +53,23 @@ export default class FollowingContainer extends React.Component {
     if (unfollow) {
       const url = `${settings.followingUrl}/${username}`;
       axios.delete(url).catch(error => {
-        this.setState({ users: previousUsers, error });
+        console.log(error, error.request, error.response, error.config);
+        this.setState({ users: previousUsers });
       });
     } else {
       const data = { user: username };
       axios.post(settings.followingUrl, data).catch(error => {
-        this.setState({ todos: previousUsers, error });
+        console.log(error, error.request, error.response, error.config);
+        this.setState({ users: previousUsers });
       });
     }
   };
 
   render() {
-    return <UserList users={this.state.users} toggleFollowing={this.toggleFollowing} />;
+    return (
+      <>
+        <UserList users={this.state.users} toggleFollowing={this.toggleFollowing} />
+      </>
+    );
   }
 }
