@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import settings from "../settings";
-import useInterval from "./useInterval";
+import useInterval from "@use-it/interval";
 
 export default () => {
   const defaultDelay = 5000;

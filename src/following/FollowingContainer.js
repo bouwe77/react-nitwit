@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-import settings from "../../settings";
+import settings from "../settings";
 import UserList from "./UserList";
 
 export default class FollowingContainer extends React.Component {

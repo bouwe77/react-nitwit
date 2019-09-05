@@ -1,6 +1,6 @@
 import React from "react";
 
-import timeSince from "../../functions/timeSince";
+import timeSince from "./timeSince";
 
 function Post({ post }) {
   return (

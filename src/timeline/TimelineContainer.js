@@ -2,7 +2,7 @@ import React from "react";
 
 import Timeline from "./Timeline";
 import Compose from "./Compose";
-import useTimeline from "../../hooks/useTimeline";
+import useTimeline from "./useTimeline";
 
 function TimelineContainer() {
   const [timeline, addPost] = useTimeline();
