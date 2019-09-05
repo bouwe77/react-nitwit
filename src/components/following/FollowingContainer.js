@@ -22,22 +22,18 @@ export default class FollowingContainer extends React.Component {
     axios
       .get(settings.usersUrl)
       .then(res => {
-        const users = res.data;
-        this.setState({ isLoaded: true, users });
+        this.setState({ isLoaded: true, users: res.data });
       })
       .catch(error => {
         this.setState({ isLoaded: true, error });
       });
   };
 
+  //TODO Refactor this fucking shit
   toggleFollowing = username => {
-    //TODO as soon as this works: refactor!!!
-
     const previousUsers = this.state.users;
 
-    const foundUser = this.state.users.find(function(u) {
-      return u.user === username;
-    });
+    const foundUser = this.state.users.find(u => u.user === username);
 
     const users = this.state.users.map(user => {
       if (user.user === username) {
@@ -66,10 +62,6 @@ export default class FollowingContainer extends React.Component {
   };
 
   render() {
-    return (
-      <div className="container">
-        <UserList users={this.state.users} toggleFollowing={this.toggleFollowing} />
-      </div>
-    );
+    return <UserList users={this.state.users} toggleFollowing={this.toggleFollowing} />;
   }
 }
