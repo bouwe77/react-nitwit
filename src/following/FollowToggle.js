@@ -10,7 +10,10 @@ export default class FollowToggle extends React.Component {
   getToggle = checked => (
     <label className={styles.switch}>
       <input type="checkbox" checked={checked} onChange={this.handleToggle} />
-      <div className={`${styles.slider} ${styles.round}`} />
+      <div className={`${styles.slider} ${styles.round}`}>
+        <span className={styles.on}>Following</span>
+        <span className={styles.off}>Follow?</span>
+      </div>
     </label>
   );
 

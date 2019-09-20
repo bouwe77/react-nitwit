@@ -2,8 +2,20 @@
 /* General application-wide styles */
 /* =============================== */
 
+body {
+  margin: 10px;
+  background-color: #eaecee;
+}
+
+.app {
+  position: absolute;
+}
+
 .container {
-  width: calc(70vw);
+  position: relative;
+  z-index: 1;
+  width: 450px;
+  overflow: hidden;
 }
 
 h1 {

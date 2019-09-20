@@ -3,7 +3,7 @@
 }
 
 .user-container:nth-of-type(odd) {
-  background-color: lightgray;
+  background-color: whitesmoke;
 }
 
 .user-container:nth-of-type(even) {

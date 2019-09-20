@@ -10,7 +10,7 @@ function Header({ showTimeline, showFollowing }) {
           <img
             src="https://fontmeme.com/permalink/190618/9e3030abcf79d598d68c87c766e2f03c.png"
             alt="nitwit"
-            height="60"
+            width="120"
           />
         </a>
       </div>

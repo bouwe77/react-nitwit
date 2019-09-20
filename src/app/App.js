@@ -5,15 +5,17 @@ import TimelineContainer from "../timeline/TimelineContainer";
 import FollowingContainer from "../following/FollowingContainer";
 
 function App() {
-  const [showTimeline, setShowTimeline] = useState(true);
+  const [showTimeline, setShowTimeline] = useState(false);
 
   return (
-    <div className="container">
+    <div className="app">
       <Header
         showTimeline={() => setShowTimeline(true)}
         showFollowing={() => setShowTimeline(false)}
       />
-      {showTimeline ? <TimelineContainer /> : <FollowingContainer />}
+      <div className="container">
+        {showTimeline ? <TimelineContainer /> : <FollowingContainer />}
+      </div>
     </div>
   );
 }
