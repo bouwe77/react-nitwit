@@ -6,9 +6,9 @@ import timeSince from "./timeSince";
 function Post({ post }) {
   return (
     <>
-      <div className={styles.poep}>
+      <div className={styles["post-wrapper"]}>
         <b>{post.user}</b> <i>{timeSince(post.created)}</i>
-        <p>{post.content}</p>
+        <div>{post.content}</div>
       </div>
     </>
   );

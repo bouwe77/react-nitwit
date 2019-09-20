@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import styles from "./Compose.module.css";
+
 function Compose({ addPost }) {
   const [content, setContent] = useState("");
 
@@ -16,8 +18,14 @@ function Compose({ addPost }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <textarea onChange={handleChangeContent} value={content} />
-      <button type="submit">OK</button>
+      <div className={styles["compose-wrapper"]}>
+        <textarea
+          onChange={handleChangeContent}
+          value={content}
+          placeholder="Write something..."
+        />
+        <button type="submit">OK</button>
+      </div>
     </form>
   );
 }
