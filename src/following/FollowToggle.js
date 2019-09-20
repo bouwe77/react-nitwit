@@ -1,17 +1,16 @@
 import React from "react";
 
+import styles from "./FollowToggle.module.css";
+
 export default class FollowToggle extends React.Component {
   handleToggle = () => {
     this.props.toggleFollowing();
   };
 
   getToggle = checked => (
-    <label className="switch">
+    <label className={styles.switch}>
       <input type="checkbox" checked={checked} onChange={this.handleToggle} />
-      <div className="slider round">
-        <span className="on">Following</span>
-        <span className="off">Follow?</span>
-      </div>
+      <div className={`${styles.slider} ${styles.round}`} />
     </label>
   );
 

@@ -1,0 +1,15 @@
+/* =============================== */
+/* General application-wide styles */
+/* =============================== */
+
+.container {
+  width: calc(70vw);
+}
+
+h1 {
+  display: inline;
+}
+
+a {
+  color: #01d8ff;
+}

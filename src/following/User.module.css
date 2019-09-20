@@ -1,0 +1,20 @@
+.user-container {
+  width: 70%;
+}
+
+.user-container:nth-of-type(odd) {
+  background-color: lightgray;
+}
+
+.user-container:nth-of-type(even) {
+  background-color: #fff;
+}
+
+.parent {
+  display: flex;
+}
+
+.child {
+  flex: 1;
+  padding: 5px;
+}

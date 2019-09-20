@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Header from "./Header";
-//import TimelineContainer from "../timeline/TimelineContainer";
+import TimelineContainer from "../timeline/TimelineContainer";
 import FollowingContainer from "../following/FollowingContainer";
 
 function App() {
-  //  <TimelineContainer />
+  const [showTimeline, setShowTimeline] = useState(false);
+
   return (
-    <>
-      <Header />
-      <FollowingContainer />
-    </>
+    <div className="container">
+      <Header
+        showTimeline={() => setShowTimeline(true)}
+        showFollowing={() => setShowTimeline(false)}
+      />
+      {showTimeline ? <TimelineContainer /> : <FollowingContainer />}
+    </div>
   );
 }
+
 export default App;

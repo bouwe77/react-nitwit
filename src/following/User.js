@@ -1,5 +1,6 @@
 import React from "react";
 
+import styles from "./User.module.css";
 import FollowToggle from "./FollowToggle";
 
 class User extends React.Component {
@@ -13,15 +14,17 @@ class User extends React.Component {
     var followsYou = isFollowingYou ? "follows you" : "";
 
     return (
-      <div>
-        <div>
-          <b>{user}</b> <i>{followsYou}</i>
-        </div>
-        <div>
-          <FollowToggle
-            youAreFollowing={youAreFollowing}
-            toggleFollowing={this.toggleFollowing}
-          />
+      <div className={styles["user-container"]}>
+        <div className={styles.parent}>
+          <div className={styles.child}>
+            <b>{user}</b> <i>{followsYou}</i>
+          </div>
+          <div className={styles.child}>
+            <FollowToggle
+              youAreFollowing={youAreFollowing}
+              toggleFollowing={this.toggleFollowing}
+            />
+          </div>
         </div>
       </div>
     );

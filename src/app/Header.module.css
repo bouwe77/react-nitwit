@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
