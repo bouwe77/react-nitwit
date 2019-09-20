@@ -5,7 +5,7 @@ import TimelineContainer from "../timeline/TimelineContainer";
 import FollowingContainer from "../following/FollowingContainer";
 
 function App() {
-  const [showTimeline, setShowTimeline] = useState(false);
+  const [showTimeline, setShowTimeline] = useState(true);
 
   return (
     <div className="container">
