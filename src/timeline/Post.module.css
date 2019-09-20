@@ -1,15 +1,7 @@
-.user-wrapper {
+.poep {
   width: 430px;
   background: #ffffff;
   padding: 10px 5px 5px 5px;
   margin-bottom: 5px;
   border-radius: 5px;
-}
-
-.parent {
-  display: flex;
-}
-
-.child {
-  flex: 1;
 }

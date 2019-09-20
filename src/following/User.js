@@ -14,7 +14,7 @@ class User extends React.Component {
     var followsYou = isFollowingYou ? "follows you" : "";
 
     return (
-      <div className={styles["user-container"]}>
+      <div className={styles["user-wrapper"]}>
         <div className={styles.parent}>
           <div className={styles.child}>
             <b>{user}</b> <i>{followsYou}</i>

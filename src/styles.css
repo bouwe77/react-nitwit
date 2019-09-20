@@ -14,11 +14,12 @@ body {
 .container {
   position: relative;
   z-index: 1;
-  width: 450px;
+  width: 500px;
   overflow: hidden;
 }
 
-h1 {
+h1,
+p {
   display: inline;
 }
 
